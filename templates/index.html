@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Приветствую тебя, {{ request.user.full_name }}</h1>
+    <h2>Здесь вы можете создать платеж:</h2>
+    <form method="post" action="{% url 'create_payment' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Провести платеж">
+    </form>
+    {% if errors %}
+        {{ error }}
+    {% endif %}
+{% endblock %}

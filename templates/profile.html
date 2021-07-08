@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Личный кабинет</h1>
+    <p>Полное имя: {{ user.full_name }}</p>
+    <p>Электронная почта: {{ user.email }}</p>
+    {% if user.phone %}
+        <p>Телефон: {{ user.phone }}</p>
+    {% endif %}
+    <p>Ваш баланс: {{ user.reward }}</p>
+    <div>
+        <h2>Заказать выплату:</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Заказ выплаты">
+        </form>
+        {% if error %}
+            <h4>{{ error }}</h4>
+        {% endif %}
+    </div>
+{% endblock %}
