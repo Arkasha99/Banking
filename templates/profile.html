@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load float_fix %}
+
 {% block content %}
     <h1>Личный кабинет</h1>
     <p>Полное имя: {{ user.full_name }}</p>
@@ -7,7 +9,7 @@
     {% if user.phone %}
         <p>Телефон: {{ user.phone }}</p>
     {% endif %}
-    <p>Ваш баланс: {{ user.reward }}</p>
+    <p>Ваш баланс: {{ user.reward|float_fix }}</p>
     <div>
         <h2>Заказать выплату:</h2>
         <form method="post">
