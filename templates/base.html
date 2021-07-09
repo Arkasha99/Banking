@@ -15,10 +15,10 @@
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
-{#                        <a class="nav-item nav-link" href="{% url 'logout' %}?next=/">Выйти</a>#}
+                        <a class="nav-item nav-link" href="{% url 'logout' %}?next=/">Выйти</a>
                     {% else %}
-{#                        <a class="nav-item nav-link" href="{% url 'login' %}">Логин</a>#}
-{#                        <a class="nav-item nav-link" href="{% url 'registration' %}">Регистрация</a>#}
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Логин</a>
+                        <a class="nav-item nav-link" href="{% url 'registration_view' %}">Регистрация</a>
                     {% endif %}
                 </div>
             </div>

@@ -1,6 +1,15 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
-from bnks.models import Payment, Payback
+from bnks.models import Payment, Payback, Client
+
+
+class SignUpForm(UserCreationForm):
+    full_name = forms.CharField(max_length=100)
+
+    class Meta:
+        model = Client
+        fields = ('username', 'full_name', 'password1', 'password2')
 
 
 class CreatePayment(forms.ModelForm):

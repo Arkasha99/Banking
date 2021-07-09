@@ -4,11 +4,6 @@
 {% block submit_buttons_bottom %}
     {% if not adminform.form.instance.is_payed %}
     <div class="submit-row">
-{#        <form method="post" action="{% url 'profile' %}">#}
-{#            adminform.form.instance.id #}
-{#            {% csrf_token %}#}
-{#            <input type="submit" value="Выплатить">#}
-{#        </form>#}
         <a href="{% url 'admin:admin_payback' adminform.form.instance.id%}"><input type="button" value="Выплатить"/></a>
     </div>
     {% endif %}

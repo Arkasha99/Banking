@@ -5,6 +5,7 @@ import requests
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path
+from django.utils import timezone
 
 from bnks.models import Client, Payment, Payback
 
@@ -34,15 +35,15 @@ class PaybackAdmin(admin.ModelAdmin):
 
     def make_payback(self, request, pk):
         payback_obj = Payback.objects.get(id=pk)
-        payback_obj.date_of_work = datetime.datetime.now()
+        payback_obj.date_of_work = datetime.datetime.now(tz=timezone.get_current_timezone())
         payback_obj.is_payed = True
-        if request.user.reward >= payback_obj.amount_of_payback:
-            request.user.reward -= payback_obj.amount_of_payback
+        if payback_obj.user.reward >= payback_obj.amount_of_payback:
+            payback_obj.user.reward -= payback_obj.amount_of_payback
         else:
             raise ValueError('На счету недостаточно денег!')
-        request.user.save()
+        payback_obj.user.save()
         payback_obj.save()
         if payback_obj.account_number:
             payload = {"account": payback_obj.account_number, "amount": payback_obj.amount_of_payback}
-            r = requests.post('https://webhook.site/ab1412f1-5f48-4e39-9328-752eea58518a', data=json.dumps(payload))
+            r = requests.post('https://webhook.site/014a8aad-7e72-4059-9e36-60eac173c40b', data=json.dumps(payload))
         return redirect('admin:index')
