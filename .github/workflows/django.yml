@@ -28,3 +28,11 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Coverage
+      run: |
+        pip install coverage
+        coverage run manage.py test
+        coverage report
+    - name: Django Testing
+      run: |
+        python3 manage.py test
