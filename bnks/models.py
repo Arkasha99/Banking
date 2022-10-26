@@ -14,7 +14,7 @@ class Client(AbstractUser):
     reward = models.FloatField(default=0, verbose_name='Вознаграждеине')
 
     def __str__(self):
-        return f'Пользователь - {self.full_name}'
+        return f'{self.full_name}'
 
 
 class Payment(models.Model):
